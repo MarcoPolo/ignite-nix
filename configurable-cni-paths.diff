@@ -1,0 +1,42 @@
+diff --git a/pkg/constants/dependencies.go b/pkg/constants/dependencies.go
+index 96fcf057..8fbb60b8 100644
+--- a/pkg/constants/dependencies.go
++++ b/pkg/constants/dependencies.go
+@@ -19,7 +19,11 @@ var PathDependencies = [...]string{
+ 	"/dev/kvm",
+ }
+ 
++// Path to Loopback
++var CNILoopBack = "/opt/cni/bin/loopback"
++var CNIBridge = "/opt/cni/bin/bridge"
++
+ var CNIDependencies = [...]string{
+-	"/opt/cni/bin/loopback",
+-	"/opt/cni/bin/bridge",
++	CNILoopBack,
++	CNIBridge,
+ }
+diff --git a/pkg/network/cni/cni.go b/pkg/network/cni/cni.go
+index a2a3a5f3..fc0a4f93 100644
+--- a/pkg/network/cni/cni.go
++++ b/pkg/network/cni/cni.go
+@@ -22,13 +22,15 @@ import (
+ 	"github.com/weaveworks/ignite/pkg/util"
+ )
+ 
++// CNIBinDir describes the directory where the CNI binaries are stored
++var CNIBinDir = "/opt/cni/bin"
++
++// CNIConfDir describes the directory where the CNI plugin's configuration is stored
++var CNIConfDir = "/etc/cni/net.d"
++
+ const (
+ 	// TODO: CNIBinDir and CNIConfDir should maybe be globally configurable?
+ 
+-	// CNIBinDir describes the directory where the CNI binaries are stored
+-	CNIBinDir = "/opt/cni/bin"
+-	// CNIConfDir describes the directory where the CNI plugin's configuration is stored
+-	CNIConfDir = "/etc/cni/net.d"
+ 	// netNSPathFmt gives the path to the a process network namespace, given the pid
+ 	netNSPathFmt = "/proc/%d/ns/net"
+ 

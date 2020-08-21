@@ -1,8 +1,8 @@
 apiVersion: ignite.weave.works/v1alpha2
 kind: VM
 metadata:
-  name: my-vm-6
-  uid: 655555df99804ae8
+  name: my-vm-2
+  uid: 211372df99804ae8
 spec:
   image:
     oci: weaveworks/ignite-ubuntu
